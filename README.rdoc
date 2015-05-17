@@ -1,6 +1,7 @@
 == README
 
 This is job board.
+You post yours job and someone search for a job
 
 We have diffrent job opportunities.
 Full time, part-time, freelancer and consulting.

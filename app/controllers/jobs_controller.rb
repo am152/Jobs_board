@@ -4,7 +4,12 @@ class JobsController < ApplicationController
   	
 
   def index
-    @jobs = Job.all.order("created_at DESC")
+    if params[:category].blank?
+      @jobs = Job.all.order("created_at DESC")
+    else 
+      @category_id = Category.find_by(name: params[:category]).id
+      @jobs = Job.where(category_id: @category_id).order("created_at DESC")
+    end
   end
 
   def show
@@ -44,7 +49,7 @@ class JobsController < ApplicationController
 	private
 
 	def jobs_params
-		params.require(:job).permit(:title, :description, :company, :url, :category_id)
+		params.require(:job).permit(:title, :description, :company, :url, :category_id) #every job gets new  category id specific to the job; so when we filter we will se only full time job and esc. based on category id ;;because i can't place multiline comments on haml (_form.html.haml line 2) i have do it here
 	end
 
 	def find_job

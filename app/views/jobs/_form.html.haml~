@@ -1,7 +1,8 @@
-= simple_form_for(@job, html: {class: 'form-horizontal'}) do |f|
-  = f.input :title, label :  "Job Title"
-  = f.input :description, label :  " ob Description"
-  = f.input :company, label :  "Your Company"
-  = f.input :url, label :  "Link to Job"
+= simple_form_for(@job, html: {class: 'form-horizontal'}) do |f| 
+  = f.collection_select :category_id, Category.all, :id, :name, {promt: "Choose a category"}  | -#every job gets new     -#category id specific to the job; so when we filter we will se only full time job and esc. based on category id 
+  |= f.input :title, label:  "Job Title" 
+  = f.input :description, label:  " Job Description"
+  = f.input :company, label:  "Your Company"
+  = f.input :url, label:  "Link to Job"
   %br/
   = f.button :submit
